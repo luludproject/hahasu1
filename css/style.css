@@ -10292,3 +10292,49 @@ td {
   padding: 8px;
   text-align: center;
 }
+
+form {
+  max-width: 600px;
+  margin: auto;
+}
+.form-group {
+  margin-bottom: 15px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.form-group textarea {
+  height: 100px;
+  resize: vertical;
+}
+#address,
+#message {
+  resize: none;
+}
+button {
+  width: 100%;
+  padding: 10px 15px;
+  background-color: #17a2b8;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+button:hover {
+  background-color: #138496;
+}
+.message {
+  display: none;
+  margin-top: 15px;
+  color: green;
+}

@@ -514,6 +514,36 @@
     </div>
     <!-- Testimonial End -->
 
+    <div class="container-fluid py-5">
+      <div class="container p-0">
+        <div class="text-center pb-2">
+          <p class="section-title px-5">
+            <span class="px-2">문의</span>
+          </p>
+          <h1 class="mb-4">문의하기</h1>
+        </div>
+        <form id="inquiryForm">
+          <div class="form-group">
+              <label for="name">성함:</label>
+              <input type="text" id="name" name="name" required>
+          </div>
+          <div class="form-group">
+              <label for="phone">연락처:</label>
+              <input type="text" maxlength="11" id="phone" name="phone" required>
+          </div>
+          <div class="form-group">
+              <label for="address">주소:</label>
+              <textarea id="address" name="address" required></textarea>
+          </div>
+          <div class="form-group">
+              <label for="message">문의내용:</label>
+              <textarea id="message" name="message" required></textarea>
+          </div>
+          <button type="submit">문의하기</button>
+          <div id="responseMessage" class="message"></div>
+        </form>
+      </div> 
+    </div>
     <!-- Footer Start -->
     <div
       class="container-fluid bg-secondary text-white mt-5 py-5 px-sm-3 px-md-5"
@@ -582,6 +612,44 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        // Initialize EmailJS with your user ID
+        emailjs.init('OHibTaYdCCNdVVZjP');
+
+        document.getElementById('inquiryForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            
+            // Collect form data
+            var name = document.getElementById('name').value;
+            var phone = document.getElementById('phone').value;
+            var address = document.getElementById('address').value;
+            var message = document.getElementById('message').value;
+
+            // Send the form data using EmailJS
+            emailjs.send('service_2eeb5ge', 'template_lqh5gdc', {
+                name: name,
+                phone: phone,
+                address: address,
+                message: message
+            })
+            .then(function(response) {
+                var responseMessage = document.getElementById('responseMessage');
+                responseMessage.textContent = name + '님의 문의가 접수되었습니다. 감사합니다.';
+                responseMessage.style.display = 'block';
+                document.getElementById('inquiryForm').reset();
+            }, function(error) {
+                console.error('Error:', error);
+                var responseMessage = document.getElementById('responseMessage');
+                responseMessage.textContent = '죄송합니다. 다시 시도해주세요';
+                responseMessage.style.color = 'red';
+                responseMessage.style.display = 'block';
+            });
+
+            
+        });
+    </script>
 
 
     <script type="text/javascript">
