@@ -30,7 +30,7 @@
   });
   $(".back-to-top").click(function () {
     // 새 창에서 링크 열기
-    window.open("https://open.kakao.com/o/sDzjD7Nf", "_blank");
+    window.open("tel:010-3463-4474", "_blank");
     return false;
   });
 
