@@ -75,6 +75,7 @@ html {
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  scroll-behavior: smooth;
 }
 
 article,
@@ -99,6 +100,10 @@ body {
   color: #666666;
   text-align: left;
   background-color: #fff;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -10371,4 +10376,233 @@ button:hover {
   display: none;
   margin-top: 15px;
   color: green;
+}
+
+/* blog.css - 프리미엄 감성 맞춤 디자인 */
+
+/* ----------------------------------
+   기본 세팅
+---------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;700&display=swap');
+
+:root {
+  --primary:#0d6efd;
+  --secondary:#6c757d;
+  --dark:#343a40;
+  --light:#f8f9fa;
+  --radius:1rem;
+}
+
+* {box-sizing:border-box; margin:0; padding:0;}
+body {
+  font-family:'Pretendard','Noto Sans KR',sans-serif;
+  background:var(--light);
+  color:#333;
+  line-height:1.7;
+}
+a {text-decoration:none; color:inherit;}
+img {max-width:100%; height:auto; border-radius:var(--radius);}
+
+/* ----------------------------------
+   Hero 섹션
+---------------------------------- */
+.hero {
+  position:relative;
+  height:360px;
+  background:url('../temp_images/image_7.webp') center/cover no-repeat;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+.hero::after{
+  content:"";
+  position:absolute; inset:0;
+  background:rgba(0,0,0,.45);
+  backdrop-filter:blur(2px);
+}
+.hero-overlay {position:relative; z-index:1; color:#fff;}
+.hero-overlay h1 {font-size:2.5rem; font-weight:700; margin-bottom:.5rem;}
+.hero-overlay p {font-size:1.15rem; opacity:.9;}
+
+/* ----------------------------------
+   Blog Wrapper
+---------------------------------- */
+.blog-wrapper {
+  display:grid;
+  grid-template-columns: 280px 1fr;
+  gap:48px;
+  max-width:1200px;
+  margin:0 auto;
+  padding:60px 15px;
+}
+@media (max-width: 992px) {
+  .blog-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 20px 15px;
+  }
+
+  .toc {
+    order: -1; /* 👉 항상 blog-content보다 위에 배치 */
+    position: relative; /* 고정은 안 하고 위에 자연스럽게 붙임 */
+    width: 100%;
+    margin-bottom: 10px;
+    background: #f9f9f9; /* 가독성 높이기 */
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+
+  .blog-content {
+    width: 100%;
+    order: 2;
+  }
+
+  /* 혹시 목차 안에 리스트가 사라지는 경우 대비 */
+  .toc ul, .toc ol {
+    display: block !important;
+  }
+}
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 비율 유지 */
+  height: 0;
+  margin: 20px auto;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+
+/* ----------------------------------
+   TOC (목차)
+---------------------------------- */
+.toc {
+  background:#fff;
+  border-left:4px solid var(--danger);
+  box-shadow:0 4px 14px rgba(0,0,0,.04);
+  padding:24px;
+  border-radius:var(--radius);
+  position:sticky;
+  top:100px;
+  height:max-content;
+}
+.toc h2 {font-size:1.25rem; margin-bottom:12px; color:var(--danger);} 
+.toc ul {list-style:none;}
+.toc li + li {margin-top:8px;}
+.toc a {color:var(--dark); transition:.2s;}
+.toc a:hover {color:var(--danger);}
+
+@media (max-width: 768px) {
+  .your-sticky-box {
+    position: static; /* 모바일에서는 sticky 비활성화 */
+    padding: 16px;
+    border-left: none;
+    box-shadow: none;
+    top: auto;
+  }
+}
+
+/* ----------------------------------
+   Post Content
+---------------------------------- */
+.post-content h2 {font-size:1.75rem; margin:2.5rem 0 1rem; color:var(--danger)} 
+.post-content p {margin-bottom:1.25rem;}
+.post-img {display:block; margin:0 auto 1.75rem; box-shadow:0 6px 18px rgba(0,0,0,.08);} 
+
+/* ----------------------------------
+   FAQ
+---------------------------------- */
+.faq {margin-top:3rem;}
+.faq h2 {font-size:1.5rem; margin-bottom:1rem; color:var(--danger);} 
+.faq details {background:#fff; border-radius:var(--radius); margin-bottom:10px; padding:14px 18px; box-shadow:0 2px 8px rgba(0,0,0,.03);} 
+.faq summary {cursor:pointer; font-weight:600;}
+.faq p {margin:10px 0 0 0;}
+
+/* ----------------------------------
+   Keyword Table
+---------------------------------- */
+.keyword-table-wrapper {margin-top:3rem;}
+.keyword-table {width:100%; border-collapse:collapse; background:#fff; box-shadow:0 2px 10px rgba(0,0,0,.05);} 
+.keyword-table th, .keyword-table td {padding:14px 16px; text-align:center; border:1px solid #e9ecef;}
+.keyword-table th {background:var(--danger); color:#fff; font-weight:600;}
+.keyword-table td {background:#fafafa;}
+
+/* ----------------------------------
+   Tags 버튼 스타일
+---------------------------------- */
+.tags {margin-top:3rem;}
+.tags .tag-list {display:flex; flex-wrap:wrap; gap:8px;}
+.tags a {
+  display:inline-block;
+  background:#fff;
+  border:1px solid var(--danger);
+  color:var(--danger);
+  padding:6px 14px;
+  border-radius:30px;
+  font-size:.9rem;
+  transition:.2s;
+}
+.tags a:hover {
+  background:var(--danger);
+  color:#fff;
+}
+
+/* ----------------------------------
+   네비·푸터 커스텀 (markup 동일)
+---------------------------------- */
+.navbar {
+  background:#fff!important;
+  border-bottom:1px solid #e9ecef;
+}
+.navbar-brand span {color:var(--danger)!important;}
+.nav-item.nav-link {color:var(--dark)!important; margin:0 8px; transition:.2s;}
+.nav-item.nav-link:hover,.nav-item.nav-link.active{color:var(--danger)!important;}
+
+.footer {background:#1f1f1f; color:#aaa; padding:60px 0;}
+
+/* 전화 버튼 */
+.back-to-top {position:fixed; bottom:24px; right:24px; z-index:999; filter:drop-shadow(0 4px 10px rgba(0,0,0,.3)); transition:.2s;}
+.back-to-top:hover {transform:translateY(-4px);}
+
+
+.text-white2{
+  color:white !important;
+}
+
+.map{
+  display: flex;
+  justify-content: center;
+  margin: 30px auto;
+}
+
+.hero-overlay h1{
+  color: #fff !important;
+}
+
+
+@media (max-width: 992px) {
+  .toc {
+    position: static !important; /* sticky 무력화 */
+    top: auto;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    box-shadow: none;
+    border-left: none;
+  }
+}
+@media (max-width: 992px) {
+  .aside, .sidebar, .toc-left {
+    display: none !important;
+  }
 }
